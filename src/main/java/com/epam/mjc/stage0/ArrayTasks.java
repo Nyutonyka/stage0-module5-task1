@@ -125,7 +125,7 @@ public class ArrayTasks {
      * arr = [[3, 1, 2,], [3,2]] -> [[2, 3], [1, 2, 3]]
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
-    public int[][] sortRaggedArray(int[][] arr) {
+    public static int[][] sortRaggedArray(int[][] arr) {
 
         int sort;
         for (int i = 0; i < arr.length; i++) {
@@ -138,34 +138,18 @@ public class ArrayTasks {
                     }
                 }
             }
-
         }
+
+        int[] sorted;
         for (int i = 0; i < arr.length; i++) {
-            if (i < arr.length - 1) {
-                if (arr[i].length > arr[i + 1].length) {
-                    int[] temp = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = temp;
-                }
-                if (arr[i].length == arr[i + 1].length) {
-                    for (int j = 0; j < arr[i].length; j++) {
-                        if (arr[i][j] > arr[i + 1][j]) {
-                            sort = arr[i][j];
-                            arr[i][j] = arr[i + 1][j];
-                            arr[i + 1][j] = sort;
-                        }
-                    }
+            for (int k = 1; k < (arr.length - i); k++) {
+                if (arr[k - 1].length > arr[k].length) {
+                    sorted = arr[k];
+                    arr[k] = arr[k - 1];
+                    arr[k - 1] = sorted;
                 }
             }
         }
-
-        for (int[] i : arr) {
-            for (int k : i) {
-                System.out.print(k + " ");
-            }
-            System.out.println();
-        }
-        System.out.println("-------------------");
         return arr;
     }
 }
